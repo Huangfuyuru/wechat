@@ -61,6 +61,7 @@ router.get('/images/:name', async c => {
 
     c.res.encoding = 'binary';
     c.res.body = data;
+   // console.log(data.toString('utf8'));
   } catch (err) {
     c.res.status(404);
   }
