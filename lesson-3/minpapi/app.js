@@ -20,6 +20,7 @@ mdb.loadData(_dbpath);
 
 router.get('/search', async c => {
   let kwd = '';
+  console.log(c);
   if (c.query.q !== undefined) {
     kwd = c.query.q.trim();
   }
