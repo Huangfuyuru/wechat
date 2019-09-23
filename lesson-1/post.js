@@ -27,5 +27,4 @@ http.createServer((req, res) => {
             res.end('ok');
         }
     });
-})
-.listen(8001, 'localhost');
+}).listen(8001, 'localhost');
