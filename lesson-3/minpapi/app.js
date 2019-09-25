@@ -67,5 +67,8 @@ router.get('/images/:name', async c => {
   }
 });
 
-
+if(process.argv.indexOf('-d')>0){
+    app.config.daemon = true;
+    app.config.showLoadInfo = true;
+}
 app.run(8001, 'localhost');
