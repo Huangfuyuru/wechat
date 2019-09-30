@@ -71,4 +71,9 @@ if(process.argv.indexOf('-d')>0){
     app.config.daemon = true;
     app.config.showLoadInfo = true;
 }
+async function loadPage(pagename,pagedir = './pages'){
+        let pagefile = `${pagedir}/${pagename}.html`;
+            return await readFile(pagefile);
+}
+
 app.run(8001, 'localhost');
