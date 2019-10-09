@@ -1,0 +1,11 @@
+{
+    "name":"albert",
+    "age":20,
+    "skill":['linux','window1']
+}
+<xml>
+    <name>albert</name>
+    <age>30</age>
+    <skill>linux</skill>
+    <skill>window1</skill>
+</xml>
