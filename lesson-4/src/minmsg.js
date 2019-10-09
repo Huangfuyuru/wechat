@@ -25,7 +25,7 @@ function formatTpl(data) {
     }
 }
 
-router.get('/wx/msg', async c => {
+router.get('/home/msg', async c => {
     var token = 'msgtalk';
 
     var urlargs = [
@@ -47,7 +47,7 @@ router.get('/wx/msg', async c => {
     }
 });
 
-router.post('/wx/msg', async c => {
+router.post('/home/msg', async c => {
     try {
         var xmlmsg = await new Promise((rv, rj) => {
             parsexml(c.body, {explicitArray : false}, (err, result) => {
