@@ -8,7 +8,7 @@ var app = new titbit();
 var {router} = app;
 
 //用于验证过程，在公众号验证通过后则不会再使用。
-router.get('/wx/msg', async c => {
+router.get('/home/msg', async c => {
     var token = 'msgtalk';
 
     var urlargs = [
@@ -33,7 +33,7 @@ router.get('/wx/msg', async c => {
 
 
 //公众号开发者配置验证并启用后，会通过POST请求转发用户消息。
-router.post('/wx/msg', async c => {
+router.post('/home/msg', async c => {
     try {
         var xmlmsg = await new Promise((rv, rj) => {
             parsexml(c.body, {explicitArray : false}, (err, result) => {
@@ -49,10 +49,9 @@ router.post('/wx/msg', async c => {
             fromuser    : xmlmsg.ToUserName,
             msg         : xmlmsg.Content,
             msgtime     : parseInt(Date.now() / 1000),
-            msgtype     : ''//为空，在处理时动态设置类型
+            msgtype     : ''
         };
-        //交给消息派发函数进行处理
-        //要把解析后的消息和要返回的数据对象传递过去
+
         c.res.body = wxmsg.msgDispatch(xmlmsg, data);
     } catch (err) {
         console.log(err);
