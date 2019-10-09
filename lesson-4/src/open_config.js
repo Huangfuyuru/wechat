@@ -30,4 +30,8 @@ router.get('/home/msg', async c => {
     }
 });
 
+router.post('/home/msg',async c=>{
+    //输出获取消息数据
+    console.log(c.body);
+})
 app.run(8001, 'localhost');
