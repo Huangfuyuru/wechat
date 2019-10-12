@@ -20,7 +20,7 @@ function userMsg(wxmsg, retmsg) {
             return formatMsg(retmsg);
 
         } else if(wxmsg.Content == 'who'){
-            retmsg.msg = '姓名:皇甫玉茹'+<br/>+'学号:2017011898'
+            retmsg.msg = '姓名:皇甫玉茹 学号:2017011898 班级:2017级5班'
             retmsg.msgtype = 'text';
             return formatMsg(retmsg);
         } 
