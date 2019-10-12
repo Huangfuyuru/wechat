@@ -1,0 +1,2 @@
+app.js   运行小程序
+usermsg.js 运行测试订阅号
