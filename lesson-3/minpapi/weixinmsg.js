@@ -19,7 +19,12 @@ function userMsg(wxmsg, retmsg) {
             retmsg.msgtype = 'text';
             return formatMsg(retmsg);
 
-        } else {
+        } else if(wxmsg.Content == 'who'){
+            retmsg.msg = '姓名:皇甫玉茹'+<br/>+'学号:2017011898'
+            retmsg.msgtype = 'text';
+            return formatMsg(retmsg);
+        } 
+        else {
             retmsg.msg = wxmsg.Content;
             retmsg.msgtype = wxmsg.MsgType;
             return formatMsg(retmsg);
