@@ -6,9 +6,10 @@ var token_api = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_crede
 var menu_data = {
     button : [
         {
-            name : 'linux',
-            type : 'view',
-            url : 'https://www.linux.org'
+            name : '发图',
+            type : 'pic_photo_or_album',
+            key: "rselfmenu_1_1", 
+            sub_button: [ ]
             // 会跳转到这个网站
         },
         {
@@ -16,6 +17,27 @@ var menu_data = {
             type : 'click',
             key : 'send-msg'  
             // 设定的key会被以消息的形式转发到服务器端
+        },
+        {
+            name : '二级菜单',
+            sub_button : [
+                {
+                    name : '百度',
+                    type : 'view',
+                    url : 'https://www.baidu.com/'
+                },
+                {
+                    name : '发送地址',
+                    type : 'location_select',
+                    key : "rselfmenu_2_0"
+                },
+                {
+                    name : '扫码',
+                    type : 'scancode_waitmsg',
+                    key : "rselfmenu_0_0", 
+                    sub_button : []
+                }
+            ]
         }
     ]
 };
