@@ -8,6 +8,8 @@ var app = new titbit();
 var {router} = app;
 
 //用于验证过程，在公众号验证通过后则不会再使用。
+//因为在测试号中配置了路由，所以我们通过输入框发送消息的时候就会到这个路由
+//客户端发送GET请求
 router.get('/home/msg', async c => {
     var token = 'msgtalk';
 
@@ -35,6 +37,7 @@ router.get('/home/msg', async c => {
 //公众号开发者配置验证并启用后，会通过POST请求转发用户消息。
 router.post('/home/msg', async c => {
     try {
+        //将xml格式的消息转换为json对象
         var xmlmsg = await new Promise((rv, rj) => {
             parsexml(c.body, {explicitArray : false}, (err, result) => {
                 if (err) {
@@ -44,6 +47,7 @@ router.post('/home/msg', async c => {
                 }
             });
         });
+        
         var data = {
             touser      : xmlmsg.FromUserName,
             fromuser    : xmlmsg.ToUserName,

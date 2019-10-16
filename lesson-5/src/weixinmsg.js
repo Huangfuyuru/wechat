@@ -39,10 +39,34 @@ function userMsg(wxmsg, retmsg) {
     }
 }
 
+function eventMsg(wxmsg,retmsg){
+    //把返回消息的类型设置为text
+    retmsg.msgtype = 'text';
+    switch(wxmsg.Event){
+        case 'subscribe':
+            retmsg.msg = '谢谢关注';
+            return formatMsg(retmsg);
+        case 'unsubscribe':
+            console.log(wxmsg.FromUserName,'取消关注');
+            break;
+        case 'CLICK':
+            retmsg.msg = wxmsg.EventKey;
+            return formatMsg(retmsg);
+        case 'VIEW':
+            console.log('用户浏览',wxmsg.EventKey);
+            break;
+        default:
+            return '';
+    }
+    return '';
+}
 exports.userMsg = userMsg;
 exports.help = help;
 
 exports.msgDispatch = function msgDispatch(wxmsg, retmsg) {
+    if(wxmsg.MsgType == 'event'){
+        return eventMsg(wxmsg,retmsg);
+    }
     return userMsg(wxmsg, retmsg);
 };
 

@@ -17,7 +17,7 @@ var _dbpath = './mddata';
 mdb.domain = 'https://hf.yunfuwuko.cn';
 mdb.loadData(_dbpath);
 
-
+//如果是GET请求，并且路由是search，那么就执行回调函数
 router.get('/search', async c => {
   let kwd = '';
   console.log(c);
