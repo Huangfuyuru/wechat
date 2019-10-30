@@ -16,7 +16,7 @@ var pgdb = new pg.Pool({
 //app.use(ufilter,{method:['PUT','POST','DELETE']});
 //获取用户列表
 app.get('/user',async c => {
-  let sql = 'SELECT id,username FROM users';
+  let sql = 'SELECT * FROM users';
   let ret = await pgdb.query(sql);
 //rowCount 是本次操作对数据库的影响条数
   if(ret.rowCount <= 0){
@@ -93,7 +93,7 @@ app.put('/user/:id',async c => {
         }
     }else{
         c.res.body = {
-            status:0,
+            status:0,
             data:'ok'
         }
     
