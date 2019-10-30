@@ -122,7 +122,7 @@ app.delete('/user/:id',async c => {
     }
         
 })
-app.run(8001);
+app.run(8031);
 
 /**
  *1.接口返回值需要封装成函数统一处理

@@ -53,10 +53,10 @@ app.get('/user/:id',async c=>{
 
 //创建新用户
 app.post('/user',async c=>{
-    let sql = 'INSERT INTO users (username,email,passwd) VALUES ($1,$2,$3)';
+    let sql = 'INSERT INTO users (username,email,password) VALUES ($1,$2,$3)';
     //创建新用户的数据在body属性中，是POST请求
     let ret = await pgdb.query(sql,[
-        c.body.username,c.body.email,c.body.passwd
+        c.body.username,c.body.email,c.body.password
     ])
 
     if(ret.rowCount <= 0){
