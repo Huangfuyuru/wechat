@@ -20,7 +20,7 @@ var tokenurl = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_creden
                 media:'blackpink.jpg'
             }
         })
-
+        console.log('hellp')
         console.log(ret);
     }catch(err){
 

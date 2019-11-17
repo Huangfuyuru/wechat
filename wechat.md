@@ -1,10 +1,124 @@
 # 整体课程  
 ## 小程序    
 ### 小程序项目目录结构  
+pages目录  
+    index.js 控制页面逻辑   
+    index.json 页面配置文件  
+    index.wxml 模板文件  
+    index.wxss 样式文件   
+app.json 小程序全局配置文件  
+    pages  
+    window  
+    tabBar   
+```
+{
+    "pages":[
+        "pages/home/home",
+        "pages/me/me"
+    ],
+    "window":{
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor":"#fff",
+        "navigationBarTitleText":"咸鱼日记簿",
+        "navigationBarTextStyle":"black:
+    },
+    "tarBar":{
+        "list":[{
+            "pagePath":"pages/home/home",
+            "text":"日记簿",
+            "iconPath":"./img/s1.png",
+            "selectedIconPath":"./img.s1.png"
+        },{
+
+        }]
+    }
+}
+```
+project.config.json 项目相关的配置文件
+
 ### 小程序页面生命周期(基本流程以及相关回调函数)  
+onLoad 监听页面加载  
+onShow  监听页面显示 
+onReady 监听页面初次渲染完成    
+onHide  监听页面隐藏    
+onUnload  监听页面卸载  
 ### 注册小程序以及如何对接开发者服务器域名的一些注意点和限制规则?（非重点，服务器开启HTTPS，域名要备案）  
 ### 小程序如何发起网络请求?(wx.request)   
-### 了解小程序的能力？(比如接口，能解决基础问题)
+```
+wx.request({
+    url:'http://....',
+    data:this.options,
+    success:(res)=>{
+        this.setData({
+            list:res.data.list
+        })
+    }
+})
+```
+### 了解小程序的能力？(比如接口，能解决基础问题) 
+**罗盘什么的没看** 
+* 表单  
+```
+//wxml  
+<form bindsubmit="postForm">
+    <input type="text" name="userInput" bindinput="getInput"/>
+    <button form-type="submit">Submit</button>
+    <text>{{userInput}}</text>
+</form>
+//js
+getInput(e){
+    this.setData({
+        userInput:e.detail.value
+    })
+}
+postForm(e){
+    wx.navigateTo({
+        url:'/pages/test/test?num='+e.detail.value.userInput
+    })
+}
+```
+* 路由   
+wx.switchTab  
+跳转到tabBar页面，并关闭其他所有非tabBar页面   
+```
+//wxml
+<text bindtap="jumpIndex">Jump to Index</text>
+//js
+jumpIndex(){
+    wx.switchTab({
+        url:'/pages/index/index'
+    })
+}
+```
+wx.reLaunch  
+关闭所有页面，打开应用内的每个页面  
+```
+//wxml
+<text bindtap="jumpHome">Jump to Home</text>
+//js
+jumpHome(){
+    wx.reLaunch({
+        url:'/pages/home/home'
+    })
+}
+```
+wx.redirectTo   
+关闭当前页面，跳转到应用内的某个页面，但是不允许跳转到tabBar页面  
+wx.navigateTo  
+保留当前页面，跳转到应用内的某个页面，但是不允许跳转到tabBar页面   
+使用**wx.navigateBace**可以返回到原页面   
+```
+<text bindtap='jump'>Jump</text>
+jump(){
+    wx.navigateTo({
+        url:'pages/jump/jump'
+    })
+}
+//等效于
+<navigater url='../jump/jump' open-type="navigate">
+Jump
+</navigater>
+```
 ### 小程序服务器端API：  
 #### 服务端API的调用方式  
 1. 需要先获取access_token，然后使用access.token去调用其他API  

@@ -5,7 +5,7 @@ var tokenurl = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_creden
 
 
 gohttp.get(tokenurl).then(data=>{
-    console.log(data);
+    // console.log(data);
 
     //解析成JSON对象，如果发现没有获取到access_token则抛出错误
     let ret =JSON.parse(data);
