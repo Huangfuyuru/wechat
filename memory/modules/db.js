@@ -8,8 +8,8 @@ function __connectDb(callback){
             return; 
         }
         //增加 修改 删除
-        db.close();
-        callback(err,db)
+        
+        callback(db)
     })
 
 }
@@ -17,10 +17,13 @@ function __connectDb(callback){
 //数据库查找
 
 exports.find=function(collectionname,json,callback){
-    __connectDb(function(err,db){
+    __connectDb(function(db){
         var dbo = db.db("memory");
-        dbo.collection(collectionname).find(json).toArray((err,data)=>{
-            callback(err,data);//拿到数据执行回调函数
+        console.log(json);
+        dbo.collection(collectionname).find(json).toArray((error,data)=>{
+            console.log(data)
+            callback(error,data);//拿到数据执行回调函数
+            db.close()
         })
     })
 }

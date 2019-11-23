@@ -53,7 +53,7 @@ app.post('/doLogin',(req,res)=>{
         Db.find('user',{"utel":req.body.utel,"upass":req.body.upass},function(err,data){
            if(data.length>0){
                 console.log('登陆成功');
-                req.session.userinfo=data[0];
+                session.userinfo=data[0];
                 res.redirect('/product')
            }else{
                 res.end('No')
