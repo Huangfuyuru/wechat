@@ -26,7 +26,7 @@ app.use(session({
               rolling:true
         }))
 
-app.use(function(res,req,next){
+app.use(function(req,res,next){
         if(req.url == '/login'|| req.url == '/doLogin'){
                 next();
         }else{
@@ -47,7 +47,8 @@ app.get('/login',(req,res)=>{
 //获取登陆提交的数据
 app.post('/doLogin',(req,res)=>{
         //获取数据
-        userLogin(req.body.utel,req.body.upass,res);
+        console.log(req.body.utel,req.body.upass)
+        userLogin(res,req.body.utel,req.body.upass);
         })
 app.get('/product',(req,res)=>{
         res.end('product')
@@ -74,18 +75,23 @@ MongoClient.connect(url,{userNewUrlParse:true},function(err,db){
         })
 }
 
-function userLogin(utel,upass){
+function userLogin(res,utel,upass){
         MongoClient.connect(url,{userNewUrlParse:true},(err,db)=>{
         if(err) throw err;
         var whereStr = {"utel":utel};
         var dbo = db.db("memory")
         dbo.collection("user").find(whereStr).toArray((err,result)=>{
-                if(err) throw err;
-                if(result.upass == upass){
+                console.log(result[0].upass)
+                if(err){
+                console.log(err.message);
+                res.end('No')
+                }
+                if(result[0].upass == upass){
                 console.log('yes');
                 //保存用户信息
-                session.userinfo=result;
-                res.redirect('/product');        
+                session.userinfo=result[0];
+                res.redirect('/product');
+                db.close()
                 }
                 db.close()
                 
