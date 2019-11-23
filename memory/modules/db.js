@@ -27,3 +27,13 @@ exports.find=function(collectionname,json,callback){
         })
     })
 }
+
+//增加数据
+exports.find=function(collectionname,json,callback){
+    __connectDb(function(db){
+        var dbo = db.db("memory");
+        dbo.collection(collectionname).insertOne(json,function(error,data){
+            callback(error,data)
+        })
+    })
+}
