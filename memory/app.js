@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/memory';
 var session = require('express-session');
+var Db = require('./modules/db.js');
 //设置body-parser中间件
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
@@ -48,7 +49,16 @@ app.get('/login',(req,res)=>{
 app.post('/doLogin',(req,res)=>{
         //获取数据
         console.log(req.body.utel,req.body.upass)
-        userLogin(res,req.body.utel,req.body.upass);
+        //userLogin(res,req.body.utel,req.body.upass);
+        Db.find('user',{"utel":req.body.utel,"upass":req.body.upass},function(err,data){
+           if(data.length>0){
+                console.log('登陆成功');
+                req.session.userinfo=data[0];
+                res.redirect('/product')
+           }else{
+                res.end('No')
+           }
+        })
         })
 app.get('/product',(req,res)=>{
         res.end('product')

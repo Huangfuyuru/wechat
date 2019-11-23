@@ -56,24 +56,24 @@ function userAdd(uid,uname,uimage,usex,upass,utel){
     })
 }
 
-function userLogin(utel,upass){
-    MongoClient.connect(url,{userNewUrlParse:true},(err,db)=>{
-        if(err) throw err;
-        var whereStr = {"utel":utel};
-        var dbo = db.db("memory")
-        dbo.collection("user").find(whereStr).toArray((err,result)=>{
-            if(err) throw err;
-            if(result.upass == upass){
-               console.log('yes');
-               //保存用户信息
-               session.userinfo=result;
+// function userLogin(utel,upass){
+//     MongoClient.connect(url,{userNewUrlParse:true},(err,db)=>{
+//         if(err) throw err;
+//         var whereStr = {"utel":utel};
+//         var dbo = db.db("memory")
+//         dbo.collection("user").find(whereStr).toArray((err,result)=>{
+//             if(err) throw err;
+//             if(result.upass == upass){
+//                console.log('yes');
+//                //保存用户信息
+//                session.userinfo=result;
 
-            }
-            db.close()
+//             }
+//             db.close()
                 
-        })
+//         })
             
-    })
+//     })
 
-}
+// }
 app.listen('8080')
