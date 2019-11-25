@@ -37,3 +37,13 @@ exports.find=function(collectionname,json,callback){
         })
     })
 }
+
+//修改数据
+exports.find=function(collectionname,json1,json2,callback){
+    __connectDb(function(db){
+        var dbo = db.db("memory");
+        dbo.collection(collectionname).updateOne(json1,{$set:json2},function(error,data){
+            callback(error,data)
+        })
+    })
+}

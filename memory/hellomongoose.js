@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 //连接mongoose数据库
 //一般只需要连接一次
-var url = 'mongodb://localhost:27017/memory';
+var url = 'mongodb://148.70.223.218:27017/memory';
 mongoose.connect(url);
 
 //监听mongodb数据库的连接状态
