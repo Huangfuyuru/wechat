@@ -1,19 +1,21 @@
 const pg = require('pg');
-const titbit = require('titit');
+const titbit = require('titbit');
 
 var app = new titbit({
     debug:true
 })
 
 var pgdb = new pg.Pool({
-    host:'127.0.0.1',
+    host:'148.70.223.218',
     port:5432,
-    password:'hf123',
-    database:'hfdatabase'
+    password:'123',
+    database:'memory',
+    user:'owner'
 })
 //获取用户列表
+/*
 app.get('/user',async c => {
-  let sql = 'SELECT id,username FROM users';
+  let sql = 'SELECT * FROM users';
   let ret = await pgdb.query(sql);
   if(ret.rowCount <= 0){
     c.res.body={
@@ -27,8 +29,8 @@ app.get('/user',async c => {
     }
   }
  });
-
-
+*/
+/*
 //获取用户详细信息
 app.get('/user/:id',async c=>{
     let sql = 'SELECT id,username,email FROM users WHERE id = $1';
@@ -118,7 +120,7 @@ app.delete('/user/:id',async c => {
     }
         
 })
-
+*/
 app.run(8001);
 
 
