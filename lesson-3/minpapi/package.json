@@ -5,7 +5,7 @@
   "main": "serv.js",
   "dependencies": {
     "gohttp": "^2.0.2",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "titbit": "^4.1.7",
     "xml2js": "^0.4.22"
   },
